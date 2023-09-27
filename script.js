@@ -91,6 +91,7 @@ let GameBoard = ( () => {
         _board[i][j].changeValue(0);
       }
     }
+    _playerState = 1;
   };
 
   return { getBoard, getPlayerState, changePlayerState, placeMove, isValidSpot, checkWinStatus, isDraw, reset };
@@ -98,6 +99,9 @@ let GameBoard = ( () => {
 
 let GameController = ( () => {
   let _squares = [];
+  let endModal = document.querySelector('.end-modal');
+  let endButton = document.querySelector('.end-modal button');
+  let endGameStatement = document.querySelector('.end-modal p');
 
   const renderBoard = () => {
     for (let i=0; i<3; i++) {
@@ -127,12 +131,12 @@ let GameController = ( () => {
       GameBoard.placeMove(i, j);
       renderBoard();
       if (GameBoard.checkWinStatus()) {
-        console.log(`player ${GameBoard.getPlayerState()} has won`);
-        // GameBoard.reset();
-        // renderBoard();
+        endGameStatement.innerHTML = `Player ${GameBoard.getPlayerState()} has won`;
+        endModal.showModal();
       }
       if (GameBoard.isDraw()) {
-        console.log('boring draw game');
+        endGameStatement.innerHTML = `The game was a draw`;
+        endModal.showModal();
       }
       GameBoard.changePlayerState();
     }
@@ -147,6 +151,12 @@ let GameController = ( () => {
       _squares[i].push(btnElement);
     }
   }
+
+  endButton.addEventListener("click", (event) => {
+    GameBoard.reset();
+    renderBoard();
+    endModal.close();
+  });
 } )();
 
 let StartGameController = ( () => {
