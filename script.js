@@ -148,3 +148,16 @@ let GameController = ( () => {
     }
   }
 } )();
+
+let StartGameController = ( () => {
+  let gameContainer = document.querySelector('.game-container');
+  let startModal = document.querySelector('.start-modal');
+  let startButton = document.querySelector('.start-modal button');
+
+  gameContainer.style.display = "none";
+  startModal.showModal();
+  startButton.addEventListener("click", () => {
+    startModal.close();
+    gameContainer.style.display = "grid";
+  });
+} )();
