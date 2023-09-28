@@ -12,7 +12,13 @@
   box-sizing: border-box;
   margin: 0px;
   padding: 0px;
-  text-shadow: 8px 8px 8px lightgray;
+  text-shadow: 8px 8px 8px black;
+  color: white;
+}
+
+p {
+  padding: 0px;
+  margin: 0px;
 }
 
 header {
@@ -21,6 +27,7 @@ header {
 }
 
 body {
+  background-color: #7a98a8;
   min-height: 100vh;
   font-family: "Skranji", sans-serif;
   display: flex;
@@ -49,9 +56,35 @@ main {
   width: clamp(80px, 160px, 160px);
   height: clamp(80px, 160px, 160px);
   font-size: clamp(25px, 50px, 50px);
-  background-color: pink;
+  background-color: #CDE6F5;
   border: none;
-  box-shadow: 0px 4px 8px lightgray;
+  box-shadow: 0px 4px 8px black;
+}
+
+.start-modal,
+.end-modal {
+  background-color: transparent;
+  border: none;
+  color: white;
+  font-size: 50px;
+  font-weight: bold;
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+}
+
+.start-modal button,
+.end-modal button {
+  background: transparent;
+  color: white;
+  border-radius: 25px;
+  text-shadow: 0px 4px 8px black;
+  box-shadow: 0px 4px 8px black;
+  cursor: pointer;
+}
+
+dialog::backdrop {
+  backdrop-filter: blur(5px);
 }
 
 footer {

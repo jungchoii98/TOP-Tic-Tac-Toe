@@ -103,6 +103,8 @@ let GameController = ( () => {
   let endButton = document.querySelector('.end-modal button');
   let endGameStatement = document.querySelector('.end-modal p');
 
+  endModal.style.display = "none";
+
   const renderBoard = () => {
     for (let i=0; i<3; i++) {
       for (let j=0; j<3; j++) {
@@ -132,10 +134,12 @@ let GameController = ( () => {
       renderBoard();
       if (GameBoard.checkWinStatus()) {
         endGameStatement.innerHTML = `Player ${GameBoard.getPlayerState()} has won`;
+        endModal.style.display = "flex";
         endModal.showModal();
       }
       if (GameBoard.isDraw()) {
         endGameStatement.innerHTML = `The game was a draw`;
+        endModal.style.display = "flex";
         endModal.showModal();
       }
       GameBoard.changePlayerState();
@@ -156,6 +160,7 @@ let GameController = ( () => {
     GameBoard.reset();
     renderBoard();
     endModal.close();
+    endModal.style.display = "none";
   });
 } )();
 
@@ -169,5 +174,6 @@ let StartGameController = ( () => {
   startButton.addEventListener("click", () => {
     startModal.close();
     gameContainer.style.display = "grid";
+    startModal.style.display = "none";
   });
 } )();
